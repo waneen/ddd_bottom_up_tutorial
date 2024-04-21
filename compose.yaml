@@ -1,0 +1,13 @@
+version: '3.2'
+
+services:
+  rust:
+    build: ./.docker
+    container_name: 'ddd_bottom_up_tutorial'
+    volumes:
+      - type: bind
+        source: .
+        target: /var/www
+    environment:
+      - CARGO_BUILD_TARGET_DIR=/tmp/target
+    tty: true
