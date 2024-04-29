@@ -4,3 +4,7 @@ members = [
 ]
 
 resolver = "2"
+
+[workspace.dependencies]
+anyhow="1.0.82"
+uuid = {verison="1.8.0", features = ["v4", "serde"]}
