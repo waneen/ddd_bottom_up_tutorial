@@ -18,6 +18,12 @@
  - src
    - 各章のC#コードをRustで書いたもの
 
+## DB
+ - postgreSQLを使用。
+ - DB情報は.envに記載
+ - AdMinerのアドレスは以下
+   - https://localhost:8081
+
 ## ToDO
  - github pagesでいい感じにノートを見れるようにしたい
  - フォント回り整えたい
