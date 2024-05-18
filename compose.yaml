@@ -1,13 +1,31 @@
-version: '3.2'
+version: '3.8'
 
 services:
   rust:
+    env_file: ./.env
     build: ./.docker
     container_name: 'ddd_bottom_up_tutorial'
     volumes:
       - type: bind
         source: .
         target: /var/www
+    depends_on:
+      - db
     environment:
       - CARGO_BUILD_TARGET_DIR=/tmp/target
+      - DATABASE_URL = postgres://${DB_USER}:$%{DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}
     tty: true
+  db:
+    env_file: ./.env
+    image: postgres:latest
+    container_name: 'ddd_bottom_up_tutorial_db'
+    ports: "5432:5432"
+    volumes:
+      - postgres_data: /var/lib/postgresql/data
+  adminer:
+    image: adminer
+    ports:
+      - "8080:8080"
+
+volumes:
+  postgres_data:
