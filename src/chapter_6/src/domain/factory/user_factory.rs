@@ -1,7 +1,7 @@
 use anyhow::Result;
 
 mod default_user_factory;
-pub use default_user_factory::DefaultUserFactory;
+// pub use default_user_factory::DefaultUserFactory;
 
 use crate::domain::{MailAddress, User, UserName};
 

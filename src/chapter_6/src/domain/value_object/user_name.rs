@@ -22,7 +22,11 @@ impl UserName {
         Ok(Self(value))
     }
 
-    pub fn get(self) -> String {
+    pub fn get(&self) -> &str {
+        &self.0
+    }
+
+    pub fn into_inner(self) -> String {
         self.0
     }
 }
@@ -30,6 +34,26 @@ impl UserName {
 impl std::fmt::Display for UserName {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "{}", self.0)
+    }
+}
+
+impl sqlx::Type<sqlx::Postgres> for UserName {
+    fn type_info() -> sqlx::postgres::PgTypeInfo {
+        <String as sqlx::Type<sqlx::Postgres>>::type_info()
+    }
+}
+
+impl<'q> sqlx::Encode<'q, sqlx::Postgres> for UserName {
+    fn encode_by_ref(&self, buf: &mut sqlx::postgres::PgArgumentBuffer) -> sqlx::encode::IsNull {
+        <String as sqlx::Encode<sqlx::Postgres>>::encode(self.0.clone(), buf)
+    }
+}
+
+impl<'r> sqlx::Decode<'r, sqlx::Postgres> for UserName {
+    fn decode(
+        value: sqlx::postgres::PgValueRef<'r>,
+    ) -> Result<Self, Box<dyn std::error::Error + 'static + Send + Sync>> {
+        <String as sqlx::Decode<sqlx::Postgres>>::decode(value).map(Self)
     }
 }
 

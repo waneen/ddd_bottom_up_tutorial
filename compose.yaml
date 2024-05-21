@@ -12,8 +12,8 @@ services:
     depends_on:
       - db
     environment:
-      - CARGO_BUILD_TARGET_DIR=/tmp/target
-      - DATABASE_URL = postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}
+      CARGO_BUILD_TARGET_DIR: /tmp/target
+      DATABASE_URL: postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}
     networks:
       - app-network
     tty: true

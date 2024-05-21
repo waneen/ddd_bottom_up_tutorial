@@ -1,3 +1,5 @@
+use anyhow::Result;
+
 use crate::{domain::User, repository::UserRepository};
 
 pub struct UserService<Repo: UserRepository> {
@@ -12,10 +14,10 @@ where
         Self { user_repository }
     }
 
-    pub fn exists(&self, user: &User) -> bool {
+    pub async fn exists(&self, user: &User) -> Result<bool> {
         let duplicated_user = self
             .user_repository
             .find_by_mail_address(&user.mail_address);
-        duplicated_user.is_some()
+        Ok(duplicated_user.await?.is_some())
     }
 }

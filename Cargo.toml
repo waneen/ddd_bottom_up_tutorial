@@ -6,4 +6,13 @@ resolver = "2"
 [workspace.dependencies]
 anyhow = "1.0.82"
 uuid = { verison = "1.8.0", features = ["v4", "serde"] }
+thiserror = "1.0.61"
 rstest = "0.19.0"
+sqlx = { version = "0.7.4", features = [
+    "postgres",
+    "runtime-tokio-native-tls",
+    "migrate",
+    "uuid",
+] }
+tokio = { version = "1", features = ["full"] }
+async-trait = "0.1.80"

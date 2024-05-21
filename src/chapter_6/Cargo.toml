@@ -1,5 +1,5 @@
 [package]
-name = "ddd_chapter_6"
+name = "ddd_sample"
 version = "0.1.0"
 publish = false
 edition = "2021"
@@ -8,3 +8,6 @@ edition = "2021"
 anyhow = { workspace = true }
 uuid = { workspace = true }
 rstest = { workspace = true }
+sqlx = { workspace = true }
+tokio = { workspace = true }
+async-trait = { workspace = true }
