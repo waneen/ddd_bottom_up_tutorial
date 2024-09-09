@@ -1,0 +1,17 @@
+### ユーザー登録APIのテスト
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+    "name": "John Doe",
+    "email": "johndoe@example.com"
+}
+
+### ユーザー情報更新APIのテスト
+PUT http://localhost:8080/users/d4bf3974-d2df-41cd-855d-70e143073495
+Content-Type: application/json
+
+{
+    "name": "Alice Smith",
+    "email": "alicesmith@example.com"
+}

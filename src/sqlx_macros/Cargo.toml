@@ -1,0 +1,13 @@
+[package]
+name = "sqlx_macros"
+version = "0.1.0"
+publish = false
+edition = "2021"
+
+[dependencies]
+proc-macro2 = "1.0.83"
+quote = "1.0.36"
+syn = { version = "2.0.65", features = ["full"] }
+
+[lib]
+proc-macro = true

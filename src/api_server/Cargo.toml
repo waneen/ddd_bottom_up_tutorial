@@ -1,0 +1,24 @@
+[package]
+name = "api_server"
+version = "0.1.0"
+publish = false
+edition = "2021"
+
+[dependencies]
+anyhow = { workspace = true }
+uuid = { workspace = true }
+rstest = { workspace = true }
+sqlx = { workspace = true }
+tokio = { workspace = true }
+async-trait = { workspace = true }
+actix-web = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+clap = { workspace = true }
+env_logger = { workspace = true }
+
+sqlx_macros = { workspace = true }
+
+[lints]
+workspace = true

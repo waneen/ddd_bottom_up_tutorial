@@ -14,6 +14,8 @@ services:
     environment:
       CARGO_BUILD_TARGET_DIR: /tmp/target
       DATABASE_URL: postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}
+    ports:
+      - "8082:8080"
     networks:
       - app-network
     tty: true

@@ -3,8 +3,16 @@
 # エラーが発生した場合にスクリプトを終了する
 set -e
 
-# データベース接続情報を設定
-export DATABASE_URL="postgres://username:password@localhost/database_name"
+# .envファイルを読み込む
+if [ -f .env ]; then
+    export $(cat .env | xargs)
+else
+    echo ".envファイルが見つかりません"
+    exit 1
+fi
+
+# データベース接続情報を設定 (環境変数から埋め込む)
+export DATABASE_URL="postgres://$DB_USER:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_NAME"
 
 # データベースをドロップ
 echo "Dropping the database..."

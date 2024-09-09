@@ -2,7 +2,11 @@
     "editor.formatOnSave": true,
     "rust-analyzer.checkOnSave.command": "clippy",
     "cSpell.words": [
+        "actix",
+        "Interactor",
         "rstest",
-        "sqlx"
+        "sqlx",
+        "thiserror",
+        "Usecase"
     ]
 }
