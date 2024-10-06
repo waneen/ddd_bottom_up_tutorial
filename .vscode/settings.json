@@ -4,6 +4,7 @@
     "cSpell.words": [
         "actix",
         "Interactor",
+        "Jdto",
         "rstest",
         "sqlx",
         "thiserror",

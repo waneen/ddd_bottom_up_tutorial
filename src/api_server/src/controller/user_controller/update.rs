@@ -43,7 +43,7 @@ where
     Usecase: UserUpdateUsecase<TM>,
     TM: TransactionManager,
 {
-    let mut tx = tx_manager.lock().await.begin().await?;
+    let mut tx = tx_manager.lock().await.get_transaction().await?;
     let res = usecase
         .update(
             &mut tx,

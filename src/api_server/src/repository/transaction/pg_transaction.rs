@@ -21,7 +21,7 @@ impl PgTransactionManager {
 impl TransactionManager for PgTransactionManager {
     type Transaction<'a> = Transaction<'a, Postgres>;
 
-    async fn begin<'a>(&self) -> Result<Self::Transaction<'a>, DatabaseError> {
+    async fn get_transaction<'a>(&self) -> Result<Self::Transaction<'a>, DatabaseError> {
         Ok(self.pool.begin().await?)
     }
 

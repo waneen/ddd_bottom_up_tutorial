@@ -27,6 +27,6 @@
 ## ToDO
  - github pagesでいい感じにノートを見れるようにしたい
  - フォント回り整えたい
- - ipadで外部からできるようにしたい -> vs-code-server
  - Testかく
- - anyhow::Errorを使用せず適切なエラーを定義する
+ - tracing等でエラーを取得できるようにする
+ - クレート分割
