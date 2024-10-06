@@ -17,7 +17,7 @@ pub async fn update_user<TM, Usecase>(
 ) -> Result<web::Json<()>, actix_web::Error>
 where
     Usecase: UserUpdateUsecase<TM>,
-    TM: TransactionManager,
+    TM: TransactionManager + Send,
 {
     Ok(update_user_controller(
         tx_manager.as_ref(),
@@ -41,9 +41,9 @@ async fn update_user_controller<Usecase, TM>(
 ) -> Result<(), UserControllerError>
 where
     Usecase: UserUpdateUsecase<TM>,
-    TM: TransactionManager,
+    TM: TransactionManager + Send,
 {
-    let mut tx = tx_manager.lock().await.get_transaction().await?;
+    let mut tx = TM::begin(tx_manager).await?;
     let res = usecase
         .update(
             &mut tx,
@@ -54,16 +54,7 @@ where
             },
         )
         .await;
-    match res {
-        Ok(res) => {
-            TM::commit(tx).await?;
-            Ok(res)
-        }
-        Err(e) => {
-            TM::rollback(tx).await?;
-            Err(e.into())
-        }
-    }
+    TM::execute(tx, res).await
 }
 
 #[derive(Deserialize, Debug)]
